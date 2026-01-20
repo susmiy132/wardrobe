@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:personal_wardrobe/screens/clothes_screen.dart';
+import 'package:personal_wardrobe/screens/dashboard_screens.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -20,7 +20,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => const ClothesScreen(),
+          builder: (_) => const DashboardScreen(),
         ),
       );
     });
