@@ -1,79 +1,66 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:personal_wardrobe/screens/wardrobe_list_screen.dart';
-// import 'sign_in_screen.dart';
+import 'package:personal_wardrobe/screens/clothes_screen.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
+
+  @override
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Navigate to wardrobe after 5 seconds
+    Timer(const Duration(seconds: 5), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (_) => const ClothesScreen(),
+        ),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFFE3E3),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 50),
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+
+            // 🖼️ TOP IMAGE
+            Image.asset(
+              'assets/images/wardrobe.png',
+              height: 220,
+            ),
+
+            const SizedBox(height: 30),
+
+            // 👗 TITLE
             const Text(
-              "Welcome to Wardrobe!",
+              "Welcome to Wardrobe",
               style: TextStyle(
-                fontSize: 32,
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
                 color: Color(0xFF0A1340),
               ),
             ),
-            const SizedBox(height: 40),
-            
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF0A1340),
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: const Text(
-                  "Create an Account",
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const WardrobeListScreen(),
-                    ),
-                  );
-                },
-              ),
-            ),
 
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
 
-            SizedBox(
-              width: double.infinity,
-              child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  side: const BorderSide(color: Color(0xFF0A1340), width: 1.5),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: const Text(
-                  "I have an account",
-                  style: TextStyle(color: Color(0xFF0A1340)),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const WardrobeListScreen(),
-                    ),
-                  );
-                },
+            // ✨ SUBTITLE
+            const Text(
+              "Your personal digital closet",
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black54,
               ),
             ),
           ],
